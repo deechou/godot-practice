@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://b21ft7u78iiqq"]
+
+[ext_resource type="Script" path="res://Projectiles/Laser.gd" id="1_dg21y"]
+[ext_resource type="Texture2D" uid="uid://dsjnf7bqs0nvl" path="res://a_graphics/projectiles/blue.png" id="2_nmbuu"]
+[ext_resource type="Texture2D" uid="uid://dhvcrre4po4qj" path="res://a_graphics/decals/white.png" id="3_5foiu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wf2ft"]
+radius = 6.0
+height = 156.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1dhlo"]
+emission_shape = 1
+emission_sphere_radius = 7.87
+particle_flag_disable_z = true
+spread = 46.21
+flatness = 0.39
+gravity = Vector3(-40, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.1
+scale_max = 0.5
+color = Color(0.219608, 1, 1, 0.47451)
+
+[node name="Laser" type="Area2D"]
+rotation = 1.5708
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_dg21y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 27)
+texture = ExtResource("2_nmbuu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.57492e-05, -7)
+shape = SubResource("CapsuleShape2D_wf2ft")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0.999808, -53)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_1dhlo")
+texture = ExtResource("3_5foiu")
+lifetime = 1.5
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

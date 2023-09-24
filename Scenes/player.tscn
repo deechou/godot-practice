@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dda8vwqya1tuu"]
+
+[ext_resource type="Script" path="res://Characters/player.gd" id="1_x2qfn"]
+[ext_resource type="Texture2D" uid="uid://i343edcghfos" path="res://a_graphics/player/player.png" id="2_f1emq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5vg6"]
+radius = 54.231
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gy3bk"]
+polygon = PackedVector2Array(-36, -43, -45, -37, -49, -31, -49, -26, -55, -20, -56, -8, -54, -4, -56, 8, -50, 17, -47, 19, -50, 22, -45, 34, -39, 38, -39, 41, -33, 52, -32, 56, -22, 63, -14, 65, -4, 64, 0, 61, 18, 57, 29, 50, 41, 49, 46, 44, 59, 45, 64, 45, 67, 45, 61, 49, 62, 53, 67, 55, 69, 57, 97, 56, 100, 53, 100, 50, 99, 46, 104, 47, 108, 46, 113, 38, 116, 40, 126, 41, 125, 36, 134, 36, 138, 29, 138, 21, 137, 14, 133, 10, 126, 12, 129, 7, 124, 4, 117, 5, 114, 1, 105, -1, 100, -1, 91, -7, 85, -7, 80, -5, 68, -20, 62, -23, 53, -24, 46, -35, 50, -36, 40, -45, 30, -57, 22, -56, 14, -55, 9, -55, 0, -55, -7, -51, -9, -54, -14, -53, -22, -48, -24, -47, -24, -43, -26, -42, -31, -43)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 31
+script = ExtResource("1_x2qfn")
+speed = 1000
+
+[node name="PlayerImage" type="Sprite2D" parent="."]
+position = Vector2(41, 4)
+rotation = 1.5708
+texture = ExtResource("2_f1emq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_r5vg6")
+
+[node name="LaserCD" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="GrenadeCD" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="LaserStartPositions" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Middle" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(135, 23)
+metadata/_edit_lock_ = true
+
+[node name="Right" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(135, 29)
+metadata/_edit_lock_ = true
+
+[node name="Left" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(135, 17)
+metadata/_edit_lock_ = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_gy3bk")
+metadata/_edit_lock_ = true
+
+[connection signal="timeout" from="LaserCD" to="." method="_on_laser_cd_timeout"]
+[connection signal="timeout" from="GrenadeCD" to="." method="_on_grenade_cd_timeout"]
