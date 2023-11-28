@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://fsqx32rml1th"]
+
+[ext_resource type="Texture2D" uid="uid://k52bo7ptt0d6" path="res://CafeBG.png" id="1_5848q"]
+[ext_resource type="Script" path="res://Info.gd" id="1_y14ol"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6yc7t"]
+font_size = 18
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y14ol")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+offset_top = 4.0
+offset_right = 858.0
+offset_bottom = 644.0
+scale = Vector2(1.49133, 1.14221)
+texture = ExtResource("1_5848q")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = 302.0
+offset_top = 195.0
+offset_right = 1239.0
+offset_bottom = 410.0
+color = Color(0.172549, 0.172549, 0.172549, 0.941176)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Home" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "BACK TO HOME"
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "In this game you play as the owner of a brand new Cat Cafe!
+Cats are constantly coming to visit, hoping for treats and hospitality. 
+You must keep them fed by throwing treats at them (LMB).
+They will constantly get hungrier, and if their hunger meter becomes empty they will get mad and leave! 
+Play well and you'll have the CATFESTATION you've always dreamed of,
+but if 3 cats leave you will die of sadness and it will be GAME OVER!
+Your score is determined by how many cats you had concurrently when you ran out of lives"
+label_settings = SubResource("LabelSettings_6yc7t")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Home" to="." method="_on_home_pressed"]

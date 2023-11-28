@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7060b2u4d71e"]
+
+[ext_resource type="Texture2D" uid="uid://cy2dkgsb866fj" path="res://Assets/CafeForUnity/Sprite/115.png" id="1_fp7pc"]
+[ext_resource type="Texture2D" uid="uid://b2x0sfxblpu8u" path="res://Assets/CafeForUnity/Sprite/187.png" id="2_fql4g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2txgm"]
+size = Vector2(112, 214)
+
+[node name="Fridge" type="StaticBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fp7pc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_2txgm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-24.5, -23)
+scale = Vector2(0.804878, 0.804878)
+texture = ExtResource("2_fql4g")

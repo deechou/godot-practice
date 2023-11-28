@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0stfcif03ead"]
+
+[ext_resource type="Texture2D" uid="uid://b4pmh5y2m8qth" path="res://Assets/Cafe/Sprite/11.png" id="1_rbu33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxwuu"]
+size = Vector2(26, 524)
+
+[node name="VerticalWall" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_rbu33")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_hxwuu")

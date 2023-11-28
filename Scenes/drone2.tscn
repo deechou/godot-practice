@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://0uuuwlk7q8ql"]
+
+[ext_resource type="Script" path="res://Characters/drone.gd" id="1_bbwqv"]
+[ext_resource type="Texture2D" uid="uid://da21hb8thl5rr" path="res://Characters/SideWalk_Orange.png" id="2_myjqt"]
+[ext_resource type="Texture2D" uid="uid://bj3w6fq1k3ucr" path="res://a_graphics/ui/progress_bar/bg.png" id="3_8dj40"]
+[ext_resource type="Texture2D" uid="uid://bxm54vadnfdcl" path="res://a_graphics/ui/progress_bar/over.png" id="4_vacvt"]
+[ext_resource type="Texture2D" uid="uid://blnhycjpn5we6" path="res://a_graphics/ui/progress_bar/progress_red.png" id="5_x2xu5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e4omh"]
+radius = 19.0
+height = 128.0
+
+[sub_resource type="Animation" id="Animation_03na0"]
+resource_name = "Walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_msuen"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5bjn"]
+_data = {
+"RESET": SubResource("Animation_msuen"),
+"Walk": SubResource("Animation_03na0")
+}
+
+[node name="Drone" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_bbwqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_myjqt")
+hframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(6, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_e4omh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p5bjn")
+}
+
+[node name="Zoomies" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="ZoomDuration" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.5, 1)
+
+[node name="HealthBar" type="TextureProgressBar" parent="Node2D"]
+offset_left = -142.5
+offset_top = -114.0
+offset_right = 157.5
+offset_bottom = -84.0
+value = 100.0
+texture_under = ExtResource("3_8dj40")
+texture_over = ExtResource("4_vacvt")
+texture_progress = ExtResource("5_x2xu5")
+tint_under = Color(0, 0, 0, 1)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0.894118, 0.0196078, 0, 0.686275)
+metadata/_edit_use_anchors_ = true
+
+[node name="Hunger" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Zoomies" to="." method="_on_zoomies_timeout"]
+[connection signal="timeout" from="ZoomDuration" to="." method="_on_zoom_duration_timeout"]

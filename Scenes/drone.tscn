@@ -1,10 +1,55 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctaixbm3qn7c6"]
+[gd_scene load_steps=11 format=3 uid="uid://ctaixbm3qn7c6"]
 
-[ext_resource type="Texture2D" uid="uid://x0ugt1wyw7au" path="res://a_graphics/enemies/drone.png" id="1_as73d"]
 [ext_resource type="Script" path="res://Characters/drone.gd" id="1_o1jt3"]
+[ext_resource type="Texture2D" uid="uid://dso3er7n3k7gx" path="res://Characters/SideWalk_Black.png" id="2_n7msg"]
+[ext_resource type="Texture2D" uid="uid://bj3w6fq1k3ucr" path="res://a_graphics/ui/progress_bar/bg.png" id="3_d6xdu"]
+[ext_resource type="Texture2D" uid="uid://bxm54vadnfdcl" path="res://a_graphics/ui/progress_bar/over.png" id="4_yaoq7"]
+[ext_resource type="Texture2D" uid="uid://blnhycjpn5we6" path="res://a_graphics/ui/progress_bar/progress_red.png" id="5_w1k4g"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lp2ca"]
-radius = 70.0357
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mm574"]
+radius = 24.0
+height = 132.0
+
+[sub_resource type="Animation" id="Animation_msuen"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_03na0"]
+resource_name = "Walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5bjn"]
+_data = {
+"RESET": SubResource("Animation_msuen"),
+"Walk": SubResource("Animation_03na0")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v35cu"]
+size = Vector2(252, 140)
 
 [node name="Drone" type="CharacterBody2D"]
 collision_layer = 2
@@ -12,7 +57,56 @@ collision_mask = 15
 script = ExtResource("1_o1jt3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_as73d")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_n7msg")
+hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_lp2ca")
+visible = false
+position = Vector2(2, 7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mm574")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p5bjn")
+}
+
+[node name="Zoomies" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="ZoomDuration" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.5, 1)
+
+[node name="HealthBar" type="TextureProgressBar" parent="Node2D"]
+offset_left = -142.5
+offset_top = -114.0
+offset_right = 157.5
+offset_bottom = -84.0
+value = 100.0
+texture_under = ExtResource("3_d6xdu")
+texture_over = ExtResource("4_yaoq7")
+texture_progress = ExtResource("5_w1k4g")
+tint_under = Color(0, 0, 0, 0.639216)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0.894118, 0.0196078, 0, 0.890196)
+metadata/_edit_use_anchors_ = true
+
+[node name="Hunger" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_v35cu")
+
+[connection signal="timeout" from="Zoomies" to="." method="_on_zoomies_timeout"]
+[connection signal="timeout" from="ZoomDuration" to="." method="_on_zoom_duration_timeout"]
+[connection signal="timeout" from="Hunger" to="." method="_on_hunger_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

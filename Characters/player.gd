@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed: int = 500
 var can_laser: bool = true
-var can_grenade: bool = true
+var can_grenade: bool = false
 
 signal laser_fired(position, player_direction)
 signal grenade_fired(position, player_direction)
@@ -12,10 +12,18 @@ func _process(_delta):
 	# input
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * speed
-	move_and_slide()
+	
+	if(velocity != Vector2.ZERO):
+		$AnimationTree.set("active", true)
+		
+		$AnimationTree.get("parameters/playback").travel("Walk")
+		$AnimationTree.set("parameters/Walk/blend_position", velocity)	
+		move_and_slide()
+	else:
+		$AnimationTree.set("active", false)
 	
 	# rotate
-	look_at(get_global_mouse_position())
+	#look_at(get_global_mouse_position())
 	var player_direction = (get_global_mouse_position() - position).normalized()
 	
 	if Input.is_action_just_pressed("primary action") and can_laser and Globals.laser_amount > 0:

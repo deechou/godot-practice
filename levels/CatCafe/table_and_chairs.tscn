@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4xjih1vbpm0g"]
+
+[ext_resource type="Texture2D" uid="uid://ciqcece7qhocx" path="res://Assets/CafeForUnity/Sprite/295.png" id="1_e2ukj"]
+[ext_resource type="Texture2D" uid="uid://de884x1u16yds" path="res://Assets/CafeForUnity/Sprite/146.png" id="1_fnll2"]
+[ext_resource type="Texture2D" uid="uid://cujpru4iqjbk4" path="res://Assets/CafeForUnity/Sprite/292.png" id="1_ugsu4"]
+[ext_resource type="Texture2D" uid="uid://c1ug6ecnt8m5e" path="res://Assets/CafeForUnity/Sprite/293.png" id="2_1tfyc"]
+[ext_resource type="Texture2D" uid="uid://ddhswcyue54jo" path="res://Assets/CafeForUnity/Sprite/294.png" id="2_eida7"]
+
+[node name="TableAndChairs" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 4
+
+[node name="TopChair" type="Sprite2D" parent="."]
+position = Vector2(-5, -95)
+texture = ExtResource("1_ugsu4")
+
+[node name="LeftChair" type="Sprite2D" parent="."]
+position = Vector2(-225, 12)
+texture = ExtResource("2_eida7")
+
+[node name="Table" type="Sprite2D" parent="."]
+texture = ExtResource("1_e2ukj")
+
+[node name="BottomChair" type="Sprite2D" parent="."]
+position = Vector2(-7, 101)
+texture = ExtResource("2_1tfyc")
+
+[node name="Plant" type="Sprite2D" parent="."]
+position = Vector2(-0.999997, -65)
+scale = Vector2(0.845133, 0.845133)
+texture = ExtResource("1_fnll2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+build_mode = 1
+polygon = PackedVector2Array(148, -38, 130, -70, 60, -98, -66, -96, -134, -62, -154, -32, -236, -66, -278, -66, -296, -48, -290, -28, -290, 72, -284, 86, -174, 90, -114, 102, -74, 102, -72, 182, 58, 184, 60, 104, 128, 102, 130, 80, 112, 62, 106, 36, 148, 0)

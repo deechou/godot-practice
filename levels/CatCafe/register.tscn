@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d08j61x6y5qoe"]
+
+[ext_resource type="Texture2D" uid="uid://fbohdwkc7prm" path="res://Assets/Cafe1.1/Sprites1.1/351.png" id="1_ji2j0"]
+[ext_resource type="Texture2D" uid="uid://jaiyu42su6tg" path="res://Assets/CafeForUnity/Sprite/303.png" id="2_10c5d"]
+
+[node name="Register" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="Register" type="Sprite2D" parent="."]
+position = Vector2(63, -48)
+texture = ExtResource("1_ji2j0")
+
+[node name="303" type="Sprite2D" parent="."]
+position = Vector2(-28, -32.5)
+scale = Vector2(0.305328, 0.305328)
+texture = ExtResource("2_10c5d")

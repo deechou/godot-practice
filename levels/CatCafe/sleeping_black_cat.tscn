@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8bi5wajtwo0r"]
+
+[ext_resource type="Texture2D" uid="uid://cfp0tpkks0g01" path="res://Assets/black-kitten1.png" id="1_u3prc"]
+[ext_resource type="Texture2D" uid="uid://c2nadlhqw7k3q" path="res://Assets/black-kitten2.png" id="2_ym7lr"]
+[ext_resource type="Texture2D" uid="uid://bkiikbetq6wxs" path="res://Assets/black-kitten4.png" id="3_3hvi5"]
+[ext_resource type="Texture2D" uid="uid://bicu0xquho6nu" path="res://Assets/black-kitten5.png" id="4_cp3c1"]
+[ext_resource type="Texture2D" uid="uid://dup1dxj3ph7xn" path="res://Assets/black-kitten7.png" id="5_aedat"]
+[ext_resource type="Texture2D" uid="uid://cb18dymwx5gbo" path="res://Assets/black-kitten8.png" id="6_xiasf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r6aee"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_u3prc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ym7lr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3hvi5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cp3c1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_aedat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xiasf")
+}],
+"loop": false,
+"name": &"curlup",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_vg540"]
+resource_name = "curlup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"curlup"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i1vks"]
+_data = {
+"curlup": SubResource("Animation_vg540")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_r6aee")
+animation = &"curlup"
+autoplay = "curlup"
+speed_scale = 0.8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i1vks")
+}

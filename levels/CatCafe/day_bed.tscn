@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddaifx2t0od6q"]
+
+[ext_resource type="Texture2D" uid="uid://bobxjy8qrilul" path="res://Assets/CafeForUnity/Sprite/202.png" id="1_b1m11"]
+[ext_resource type="Texture2D" uid="uid://286jmnyn8l4c" path="res://Assets/CafeForUnity/Sprite/195.png" id="2_tw3yg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xf4gc"]
+size = Vector2(306, 138)
+
+[node name="DayBed" type="StaticBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_xf4gc")
+
+[node name="Counter" type="Sprite2D" parent="."]
+texture = ExtResource("1_b1m11")
+
+[node name="Pillow" type="Sprite2D" parent="."]
+position = Vector2(-96, -25)
+scale = Vector2(0.621212, 0.621212)
+texture = ExtResource("2_tw3yg")
+
+[node name="Pillow2" type="Sprite2D" parent="."]
+position = Vector2(-1, -25)
+scale = Vector2(0.621212, 0.621212)
+texture = ExtResource("2_tw3yg")
+
+[node name="Pillow3" type="Sprite2D" parent="."]
+position = Vector2(92, -25)
+scale = Vector2(0.621212, 0.621212)
+texture = ExtResource("2_tw3yg")

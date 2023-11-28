@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5e1owrv31w8t"]
+
+[ext_resource type="Texture2D" uid="uid://br5sj80jdbjcj" path="res://Assets/CafeForUnity/Sprite/205.png" id="1_hvnhg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mcol"]
+size = Vector2(94, 173.5)
+
+[node name="VerticalCounter" type="StaticBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 9.75)
+shape = SubResource("RectangleShape2D_6mcol")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 0.25)
+scale = Vector2(1, 0.997674)
+texture = ExtResource("1_hvnhg")

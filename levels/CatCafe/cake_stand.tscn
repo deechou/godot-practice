@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6222wc87uv6o"]
+
+[ext_resource type="Texture2D" uid="uid://mq6ab2y3tqf2" path="res://Assets/CafeForUnity/Sprite/333.png" id="1_brfq2"]
+
+[node name="CakeStand" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_brfq2")

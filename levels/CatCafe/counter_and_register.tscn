@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dti4pifdaxdhh"]
+
+[ext_resource type="Texture2D" uid="uid://fbohdwkc7prm" path="res://Assets/Cafe1.1/Sprites1.1/351.png" id="1_yqm8s"]
+
+[node name="CounterAndRegister" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yqm8s")

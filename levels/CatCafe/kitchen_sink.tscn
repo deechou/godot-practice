@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bypkv6xq7pyno"]
+
+[ext_resource type="Texture2D" uid="uid://cylebyworh7ye" path="res://Assets/CafeForUnity/Sprite/271.png" id="1_47ol3"]
+[ext_resource type="Texture2D" uid="uid://dbmmxj501is4l" path="res://Assets/CafeForUnity/Sprite/154.png" id="2_h8djo"]
+[ext_resource type="Texture2D" uid="uid://b0qre77qn6ecc" path="res://Assets/CafeForUnity/Sprite/331.png" id="3_clxut"]
+[ext_resource type="Texture2D" uid="uid://cu4qagiyhqav7" path="res://Assets/CafeForUnity/Sprite/17.png" id="4_6t237"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2768u"]
+size = Vector2(202, 146)
+
+[node name="KitchenSink" type="StaticBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 15
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("1_47ol3")
+
+[node name="Sink" type="Sprite2D" parent="."]
+position = Vector2(-48, -65.5)
+scale = Vector2(0.7075, 0.7075)
+texture = ExtResource("2_h8djo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_2768u")
+
+[node name="CuttingBoard" type="Sprite2D" parent="."]
+position = Vector2(42, -40.5)
+scale = Vector2(0.755102, 0.755102)
+texture = ExtResource("3_clxut")
+
+[node name="Bottles" type="Sprite2D" parent="."]
+position = Vector2(41.5, -77.5)
+scale = Vector2(0.542857, 0.542857)
+texture = ExtResource("4_6t237")

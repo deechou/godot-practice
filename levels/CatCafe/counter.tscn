@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwbqoxgp3ug8h"]
+
+[ext_resource type="Texture2D" uid="uid://dhldnvlubqnbo" path="res://Assets/Cafe1.1/Sprites1.1/321.png" id="1_jvd34"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksyjv"]
+size = Vector2(256, 123)
+
+[node name="Counter" type="StaticBody2D"]
+position = Vector2(58, -26)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-57, 26.5)
+shape = SubResource("RectangleShape2D_ksyjv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-57.3463, 28.75)
+scale = Vector2(0.692513, 0.692513)
+texture = ExtResource("1_jvd34")

@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://wj4s3vg5p0f0"]
+
+[ext_resource type="Script" path="res://levels/CatCafe/TestLevel.gd" id="1_auj07"]
+[ext_resource type="TileSet" uid="uid://v5mdagg82cu6" path="res://levels/CatCafe/catcafe_floor.tres" id="1_miyth"]
+[ext_resource type="Texture2D" uid="uid://bf3bxg104wyc3" path="res://Assets/Cafe1.1/1.png" id="2_udijx"]
+[ext_resource type="PackedScene" uid="uid://dda8vwqya1tuu" path="res://Scenes/player.tscn" id="4_ljmj0"]
+[ext_resource type="Texture2D" uid="uid://bkiikbetq6wxs" path="res://Assets/black-kitten4.png" id="5_6abbr"]
+[ext_resource type="Texture2D" uid="uid://bicu0xquho6nu" path="res://Assets/black-kitten5.png" id="6_l8403"]
+[ext_resource type="Texture2D" uid="uid://dup1dxj3ph7xn" path="res://Assets/black-kitten7.png" id="7_00oxf"]
+[ext_resource type="PackedScene" uid="uid://cwbqoxgp3ug8h" path="res://levels/CatCafe/counter.tscn" id="8_o8e40"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6uquy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_6abbr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_l8403")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_00oxf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_auj07")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_miyth")
+cell_quadrant_size = 96
+format = 2
+
+[node name="TestBackground" type="Sprite2D" parent="."]
+position = Vector2(355.5, 350.5)
+scale = Vector2(0.545385, 0.545385)
+texture = ExtResource("2_udijx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(200, 317)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_6uquy")
+frame_progress = 0.833649
+speed_scale = 0.5
+
+[node name="Furniture" type="Node2D" parent="."]
+
+[node name="Counter" parent="Furniture" instance=ExtResource("8_o8e40")]
+position = Vector2(702, 324)
+
+[node name="Player" parent="." instance=ExtResource("4_ljmj0")]
+position = Vector2(612, 477)
+scale = Vector2(0.5, 0.5)
+speed = 300
+metadata/_edit_group_ = true
+
+[node name="PlayerCam" type="Camera2D" parent="Player"]
+zoom = Vector2(0.6, 0.6)
+position_smoothing_enabled = true

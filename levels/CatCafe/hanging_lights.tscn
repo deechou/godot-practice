@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw5jwq4fnyxt7"]
+
+[ext_resource type="Texture2D" uid="uid://ktxowsho3iaj" path="res://Assets/CafeForUnity/Sprite/245.png" id="1_ktrii"]
+[ext_resource type="Texture2D" uid="uid://be8xau6bv0vki" path="res://Assets/CafeForUnity/Sprite/0123.png" id="2_dw1oo"]
+
+[node name="HangingLights" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="Lights" type="Sprite2D" parent="."]
+position = Vector2(466, 202)
+texture = ExtResource("1_ktrii")
+
+[node name="0123" type="Sprite2D" parent="."]
+position = Vector2(456, 128)
+texture = ExtResource("2_dw1oo")

@@ -1,16 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://b21ft7u78iiqq"]
 
 [ext_resource type="Script" path="res://Projectiles/Laser.gd" id="1_dg21y"]
-[ext_resource type="Texture2D" uid="uid://dsjnf7bqs0nvl" path="res://a_graphics/projectiles/blue.png" id="2_nmbuu"]
+[ext_resource type="Texture2D" uid="uid://dfkbi3oo3mfyd" path="res://Assets/treat.png" id="2_frpcp"]
 [ext_resource type="Texture2D" uid="uid://dhvcrre4po4qj" path="res://a_graphics/decals/white.png" id="3_5foiu"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wf2ft"]
-radius = 6.0
-height = 156.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05r0p"]
+size = Vector2(36, 70)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1dhlo"]
 emission_shape = 1
-emission_sphere_radius = 7.87
+emission_sphere_radius = 28.48
 particle_flag_disable_z = true
 spread = 46.21
 flatness = 0.39
@@ -19,30 +18,30 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 0.1
 scale_max = 0.5
-color = Color(0.219608, 1, 1, 0.47451)
+color = Color(0.337255, 0.113725, 0.156863, 0.803922)
 
 [node name="Laser" type="Area2D"]
 rotation = 1.5708
+scale = Vector2(1.5, 1.5)
 collision_layer = 8
-collision_mask = 7
+collision_mask = 2
 script = ExtResource("1_dg21y")
+speed = 1000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 27)
-texture = ExtResource("2_nmbuu")
+position = Vector2(0, 1.52588e-05)
+scale = Vector2(0.0954727, 0.0954727)
+texture = ExtResource("2_frpcp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.57492e-05, -7)
-shape = SubResource("CapsuleShape2D_wf2ft")
+shape = SubResource("RectangleShape2D_05r0p")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(0.999808, -53)
-emitting = false
+position = Vector2(0.666534, -36.6667)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_1dhlo")
 texture = ExtResource("3_5foiu")
 lifetime = 1.5
-one_shot = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

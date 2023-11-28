@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfu8abobc0dvq"]
+
+[ext_resource type="Texture2D" uid="uid://camlo1uuxnw7y" path="res://Assets/CafeForUnity/Sprite/277.png" id="1_d0vnq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aivvs"]
+radius = 45.0444
+
+[node name="TableStools" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 4
+collision_mask = 7
+
+[node name="Stool" type="Sprite2D" parent="."]
+texture = ExtResource("1_d0vnq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1, -4)
+shape = SubResource("CircleShape2D_aivvs")
