@@ -5,6 +5,10 @@ var rng = RandomNumberGenerator.new()
 var current_speed: int = 100
 var direction = Vector2.LEFT
 var stamina = 100
+@onready var dash_sound = $DashSound
+@onready var meow_sound = $MeowSound
+@onready var escape_sound = $EscapeSound
+
 
 
 func _ready():
@@ -44,10 +48,13 @@ func hit():
 	#print("Yum!")
 	stamina += 50
 	$Node2D/HealthBar.value = stamina
+	meow_sound.pitch_scale = rng.randf_range(0.9,1.1)
+	meow_sound.play()
 	
 
 
 func _on_zoomies_timeout():
+	dash_sound.play()
 	change_speed()
 	change_direction()
 	$Zoomies.stop()
@@ -73,6 +80,8 @@ func _on_hunger_timeout():
 	if(stamina < 0):
 		Globals.num_cats -= 1
 		Globals.lives -= 1
+		escape_sound.play()
+		await escape_sound.finished
 		queue_free()		
 		if(Globals.lives <= 0):
 			get_tree().change_scene_to_file("res://GameOver.tscn")

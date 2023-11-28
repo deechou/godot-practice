@@ -6,6 +6,7 @@ var can_grenade: bool = false
 
 signal laser_fired(position, player_direction)
 signal grenade_fired(position, player_direction)
+@onready var throw_sound = $ThrowSound
 
 func _process(_delta):
 	
@@ -33,6 +34,7 @@ func _process(_delta):
 		var selected_laser = laser_markers[randi() % laser_markers.size()]
 		$LaserCD.start()
 		laser_fired.emit(selected_laser.global_position, player_direction)
+		throw_sound.play()
 		
 	if Input.is_action_just_pressed("secondary action") and can_grenade and Globals.grenade_amount > 0:
 		can_grenade = false

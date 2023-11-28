@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://oqk2cp8vyi60"]
+[gd_scene load_steps=9 format=3 uid="uid://oqk2cp8vyi60"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_0sm01"]
 [ext_resource type="Texture2D" uid="uid://k52bo7ptt0d6" path="res://CafeBG.png" id="1_xinu2"]
+[ext_resource type="AudioStream" uid="uid://ogyqw0ku2ufg" path="res://Assets/Audio/1_new_life_master.mp3" id="3_rh6xn"]
+[ext_resource type="AudioStream" uid="uid://c4v2cshy46rg8" path="res://Assets/Audio/MI_SFX 29.mp3" id="4_suesr"]
 
 [sub_resource type="FontVariation" id="FontVariation_ylfmf"]
 spacing_glyph = 10
@@ -98,6 +100,16 @@ text = "Game by Kaylee Lewis"
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MainMenu/HBoxContainer"]
 layout_mode = 2
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_rh6xn")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
+
+[node name="MenuSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_suesr")
+bus = &"SFX"
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/HBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/HBoxContainer/VBoxContainer/InstructionButton" to="." method="_on_instruction_button_pressed"]

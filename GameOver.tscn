@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c58sd4dg6cls2"]
+[gd_scene load_steps=9 format=3 uid="uid://c58sd4dg6cls2"]
 
-[ext_resource type="Script" path="res://Info.gd" id="1_ld523"]
+[ext_resource type="Script" path="res://GameOver.gd" id="1_juvke"]
 [ext_resource type="Texture2D" uid="uid://k52bo7ptt0d6" path="res://CafeBG.png" id="2_6fbyf"]
 [ext_resource type="Texture2D" uid="uid://brx0ssjwe4tnm" path="res://Assets/game_over.png" id="3_vs2ii"]
 [ext_resource type="FontFile" uid="uid://vgv4b057nwbx" path="res://Assets/PressStart2P-vaV7.ttf" id="4_fp7ce"]
+[ext_resource type="AudioStream" uid="uid://d2a7ss5ywkgkw" path="res://Assets/Audio/3_fireflies_master.mp3" id="5_qlyur"]
+[ext_resource type="AudioStream" uid="uid://c4v2cshy46rg8" path="res://Assets/Audio/MI_SFX 29.mp3" id="6_7ebn1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_78o24"]
 font = ExtResource("4_fp7ce")
@@ -20,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ld523")
+script = ExtResource("1_juvke")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -88,5 +90,16 @@ YOU HAVE DIED OF SADNESS
 label_settings = SubResource("LabelSettings_6yc7t")
 horizontal_alignment = 3
 vertical_alignment = 3
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qlyur")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
+
+[node name="MenuSounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_7ebn1")
+volume_db = -20.0
+bus = &"SFX"
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/Home" to="." method="_on_home_pressed"]

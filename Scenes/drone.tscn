@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctaixbm3qn7c6"]
+[gd_scene load_steps=14 format=3 uid="uid://ctaixbm3qn7c6"]
 
 [ext_resource type="Script" path="res://Characters/drone.gd" id="1_o1jt3"]
 [ext_resource type="Texture2D" uid="uid://dso3er7n3k7gx" path="res://Characters/SideWalk_Black.png" id="2_n7msg"]
 [ext_resource type="Texture2D" uid="uid://bj3w6fq1k3ucr" path="res://a_graphics/ui/progress_bar/bg.png" id="3_d6xdu"]
 [ext_resource type="Texture2D" uid="uid://bxm54vadnfdcl" path="res://a_graphics/ui/progress_bar/over.png" id="4_yaoq7"]
 [ext_resource type="Texture2D" uid="uid://blnhycjpn5we6" path="res://a_graphics/ui/progress_bar/progress_red.png" id="5_w1k4g"]
+[ext_resource type="AudioStream" uid="uid://cjy5o4sp2gkog" path="res://Assets/Audio/12_human_jump_3.wav" id="6_nu30h"]
+[ext_resource type="AudioStream" uid="uid://tkpfdg42f2ow" path="res://Assets/Audio/Catmeow.mp3" id="7_mqi3i"]
+[ext_resource type="AudioStream" uid="uid://dveurcw2woihm" path="res://Assets/Audio/MI_SFX 50.mp3" id="8_gqts1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mm574"]
 radius = 24.0
@@ -105,6 +108,21 @@ autostart = true
 visible = false
 position = Vector2(10, 0)
 shape = SubResource("RectangleShape2D_v35cu")
+
+[node name="DashSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_nu30h")
+volume_db = -20.0
+bus = &"SFX"
+
+[node name="MeowSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_mqi3i")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="EscapeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_gqts1")
+volume_db = -10.0
+bus = &"SFX"
 
 [connection signal="timeout" from="Zoomies" to="." method="_on_zoomies_timeout"]
 [connection signal="timeout" from="ZoomDuration" to="." method="_on_zoom_duration_timeout"]
